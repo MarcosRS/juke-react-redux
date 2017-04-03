@@ -1,15 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router';
+import StationContainer from '../containers/StationContainer'
 
 const Stations = (props) => {
-   
+
    // const stations = props.stations
-   let genres = []
-
-   for(let station in props.stations){
-       genres.push(station)
-   }
-
+   let genres = Object.keys(props.stations)
   console.log(genres)
 
   // const DUMMY_STATIONS_DATA = [
@@ -17,20 +13,19 @@ const Stations = (props) => {
   //   { name: 'Death Metal' },
   //   { name: 'Classical' }
   // ];
+  let genreList = genres.map( genre => {
+    return (
+      <div className="list-group-item" key={genre}>
+        <Link to={`/stations/${genre}`}>{genre}</Link>
+      </div>
+    );
+  })
 
   return (
     <div>
       <h3>Stations</h3>
       <div className="list-group">
-      {
-         genres.map(station => {
-          return (
-            <div className="list-group-item" key={station}>
-              <Link to={'fill/me/in/later'}>{station}</Link>
-            </div>
-          );
-        }) 
-      }
+        {genreList}
       </div>
     </div>
   )
